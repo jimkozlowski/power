@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cistel Energy Router 2017</title>
+    <script src = "/socket.io/socket.io.js" ></script>
+    <script>
+        var userid="admin"
+        var password="admin"
+        // Establishing connection with server
+        var socket = io.connect();
+
+        // Changes the led state
+        function changeState(switchid, state){
+            var userid = document.getElementById("userid").value;
+            var passwordhash = document.getElementById("password").value;
+            if (state==1){
+                // Emit message changing the state to 1
+                socket.emit('changeState', '{"switch":'+switchid+', "state":"1", "userid":"'+userid+'", "passwordhash":"'+passwordhash+'"}');
+                // Change led status on web page to ON
+                document.getElementById("outputStatus").innerHTML = "Status: ON";
+            }
+            else if (state==0){
+                // Emit message changing the state to 0
+                socket.emit('changeState', '{"switch":'+switchid+', "state":"0", "userid":"'+userid+'", "passwordhash":"'+passwordhash+'"}');
+                // Change led status on web page to OFF
+                document.getElementById("outputStatus").innerHTML = "Status: OFF";
+            }
+        }
+    </script>
+</head>
+
+<h2>Energy Router 2017</h2>
+<img src="cistellogo.png" alt="Avatar" class="avatar">
+
+<p></p><input type="text" id="userid">Userid:</input></p>
+<p></p><input type="text" id="password">Password:</input></p>
+    
+    <h2>SW0</h2>
+    <p id="outputStatus0">Status</p>
+    <input type="button" onclick="changeState(0,1);" value="ON"></button>
+    <input type="button" onclick="changeState(0,0);" value="OFF"></button>
+    <h2>SW1</h2>
+    <p id="outputStatus1">Status</p>
+    <input type="button" onclick="changeState(1,1);" value="ON"></button>
+    <input type="button" onclick="changeState(1,0);" value="OFF"></button>
+    <h2>SW2</h2>
+    <p id="outputStatus2">Status</p>
+    <input type="button" onclick="changeState(2,1);" value="ON"></button>
+    <input type="button" onclick="changeState(2,0);" value="OFF"></button>
+
+</div>
+</body>
+</html>
+

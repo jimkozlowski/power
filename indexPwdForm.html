@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>Energy Router Web Server with BeagleBone</title>
+    <link rel="stylesheet" type="text/css" href="erloginstyle.css">
+    <script src = "/socket.io/socket.io.js" ></script>
+    <script>
+        // Establishing connection with server
+        var socket = io.connect();
+
+        // Changes the led state
+        function changeState(switchid, state, userid, passwordhash) {
+            console.log("changeState1")
+            var command = "outputStatus"
+            command = command.concat(switchid)
+             if (state==1){
+                // Emit message changing the state to 1
+                socket.emit('changeState', '{"switch":'+switchid+', "state":"1", "userid":"'+userid+'", "passwordhash":"'+passwordhash+'"}');
+                // Change led status on web page to ON
+                document.getElementById(command).innerHTML = "Status: ON";
+            }
+            else if (state==0){
+                // Emit message changing the state to 0
+                socket.emit('changeState', '{"switch":'+switchid+', "state":"0", "userid":"'+userid+'", "passwordhash":"'+passwordhash+'"}');
+                }');
+                // Change led status on web page to OFF
+                document.getElementById(command).innerHTML = "Status: OFF";
+            }
+            else if (state==2){
+                document.getElementById(command).innerHTML = "Status: NotConnected";
+            }
+        }
+    </script>
+    
+    <script language="javascript">
+       var userid = ""
+       var passwordhash = ""
+
+        function check(form) { /*function to check userid & password*/
+            userid = form.uname.value
+            passwordhash = form.psw.value
+            console.log("check")
+         }
+    </script>
+</head>
+
+<h2>Login Form</h2>
+
+//<form action="/login_page.php"  method="post">
+  <div class="imgcontainer">
+    <img src="cistellogo.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <br><label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    <br><button type="submit">Login</button>
+    <input type="checkbox" checked="checked"> Remember me
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+//</form>
+
+<div>
+
+    <h2>SW0</h2>
+    <p id="outputStatus0">Status</p>
+    <button type="button" onclick="changeState(0,1,userid,passwordhash);">ON</button>
+    <button type="button" onclick="changeState(0,0,userid,passwordhash);">OFF</button>
+    <h2>SW1</h2>
+    <p id="outputStatus1">Status</p>
+    <button type="button" onclick="changeState(1,1,userid,passwordhash);">ON</button>
+    <button type="button" onclick="changeState(1,0,userid, passwordhash);">OFF</button>
+    <h2>SW2</h2>
+    <p id="outputStatus2">Status</p>
+    <button type="button" onclick="changeState(2,1, userid, passwordhash);">ON</button>
+    <button type="button" onclick="changeState(2,0, userid, passwordhash);">OFF</button>
+
+</div>
+
+</body>
+</html>
