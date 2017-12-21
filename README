@@ -1,0 +1,20 @@
+Energy Router 2017
+
+System to turn on/off three residential style loads: 120 VAC/60 Hz.
+
+Components:
+Beaglebone: element14 Beaglebone Black Industrial.
+OS: Debian Linux 9 (cat /etc/issue).
+Wifi: D-Link Wireless N300 USB Adapter DWA-130.
+qty=3, Crydom Solid State Relay D2410, 240 VAC, 10A.
+Loads: 1) White LED light bulb (Philips White 9.5W), 2) Green LED light bulb (Philips 8W), 3) Fan (120V, 8W.)
+
+Development Environment:
+Cloud 9 (installed by default with OS): http://192.168.7.2:3000/ide.html
+To Run:
+Cloud9> Run
+Debugger listening on [::]:15454
+4:9:44-ti-r56
+Server running at :::8888
+
+Then go to pc-browser> http://192.168.7.2:8888/
