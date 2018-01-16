@@ -9,6 +9,10 @@ Wifi: D-Link Wireless N300 USB Adapter DWA-130.
 qty=3, Crydom Solid State Relay D2410, 240 VAC, 10A.
 Loads: 1) White LED light bulb (Philips White 9.5W), 2) Green LED light bulb (Philips 8W), 3) Fan (120V, 8W.)
 
+Future:
+TDK CCT32-00 300VAC, 100A Clamp Type AC Current Sensor
+TDK CCT26-00 300VAC, 30A Clamp Type AC Current Sensor
+
 Development Environment:
 Cloud 9 (installed by default with OS): http://192.168.7.2:3000/ide.html
 To Run:
